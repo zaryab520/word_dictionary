@@ -1,0 +1,259 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.4 (Ubuntu 12.4-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.4 (Ubuntu 12.4-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO ubuntu;
+
+--
+-- Name: books; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.books (
+    id integer NOT NULL,
+    name character varying,
+    author character varying,
+    published character varying
+);
+
+
+ALTER TABLE public.books OWNER TO ubuntu;
+
+--
+-- Name: books_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.books_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.books_id_seq OWNER TO ubuntu;
+
+--
+-- Name: books_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.books_id_seq OWNED BY public.books.id;
+
+
+--
+-- Name: logins; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.logins (
+    id integer NOT NULL,
+    email character varying,
+    password character varying
+);
+
+
+ALTER TABLE public.logins OWNER TO ubuntu;
+
+--
+-- Name: logins_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.logins_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.logins_id_seq OWNER TO ubuntu;
+
+--
+-- Name: logins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.logins_id_seq OWNED BY public.logins.id;
+
+
+--
+-- Name: new_words; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.new_words (
+    id integer NOT NULL,
+    english_word character varying,
+    dari_translate character varying,
+    pashto_translate character varying
+);
+
+
+ALTER TABLE public.new_words OWNER TO ubuntu;
+
+--
+-- Name: new_words_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.new_words_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.new_words_id_seq OWNER TO ubuntu;
+
+--
+-- Name: new_words_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.new_words_id_seq OWNED BY public.new_words.id;
+
+
+--
+-- Name: books id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.books ALTER COLUMN id SET DEFAULT nextval('public.books_id_seq'::regclass);
+
+
+--
+-- Name: logins id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.logins ALTER COLUMN id SET DEFAULT nextval('public.logins_id_seq'::regclass);
+
+
+--
+-- Name: new_words id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.new_words ALTER COLUMN id SET DEFAULT nextval('public.new_words_id_seq'::regclass);
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
+2306ccfffda9
+\.
+
+
+--
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.books (id, name, author, published) FROM stdin;
+\.
+
+
+--
+-- Data for Name: logins; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.logins (id, email, password) FROM stdin;
+1	zaryabmerzakhil01.asio@gmail.com	1234
+2	abc@gmail.com	1234
+3	hakeemzaryab@gmail.com	1234
+\.
+
+
+--
+-- Data for Name: new_words; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.new_words (id, english_word, dari_translate, pashto_translate) FROM stdin;
+1	PEN	قلم	قلم
+2	WATER	آب	اوبه
+3	PAPER	کاغذ	کاغذ
+4	HAND	دست	لاس
+5	NOTEBOOK	کتابچه	کتابچی
+\.
+
+
+--
+-- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.books_id_seq', 1, false);
+
+
+--
+-- Name: logins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.logins_id_seq', 3, true);
+
+
+--
+-- Name: new_words_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.new_words_id_seq', 5, true);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
+
+
+--
+-- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.books
+    ADD CONSTRAINT books_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: logins logins_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.logins
+    ADD CONSTRAINT logins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: new_words new_words_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.new_words
+    ADD CONSTRAINT new_words_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
